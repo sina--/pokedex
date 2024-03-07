@@ -45,3 +45,12 @@ let pokemonList = [
         types: ['water']
     }
 ];
+
+for (let i = 0; i < pokemonList.length; i++) { //create a loop that iterates through the length of our list of pokemon
+    document.write(pokemonList[i].name); //use the name key for each object in the array to append the pokemon name to our document
+    document.write(' ' + pokemonList[i].height); //use the height key for each object in the array to append the pokemon name to our document
+    if (pokemonList[i].height > 1) { //for each pokemon in the list, check whether it's height is greater than 1
+        document.write(' - Wow, that\'s big!') //if the height is greater than 1, append an additional message, escape the apostrophe from ending the string with \
+    }
+    document.write('<br/>') //once it has gone through one pokemon, add a line break so that the next pokemon is listed on a new line
+}
