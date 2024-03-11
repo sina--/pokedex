@@ -46,10 +46,10 @@ let pokemonList = [
     }
 ];
 
-for (let i = 0; i < pokemonList.length; i++) { //create a loop that iterates through the length of our list of pokemon
-    document.write(pokemonList[i].name + ' (height: ' + pokemonList[i].height + 'm)'); //use the name and height key for each object in the array to append the pokemon's attributes to our document
-    if (pokemonList[i].height > 1.7) { //for each pokemon in the list, check whether it's height is greater than 1.7
-        document.write(' - Wow, that\'s big!') //if the height is greater than 1, append an additional message, escape the apostrophe from ending the string with \
+pokemonList.forEach(function(pokemon) { // loop through each pokemon in the pokemonList
+    document.write(pokemon.name + ' (height: ' + pokemon.height + 'm)'); // use the name and height properties of each pokemon object to append the pokemon's attributes to our document
+    if (pokemon.height > 1.7) {// check if the pokemon's height is greater than 1.7
+        document.write(' - Wow, that\'s big!'); //if the height is greater than 1, append an additional message, escape the apostrophe from ending the string with \
     }
-    document.write('<br/>') //once it has gone through one pokemon, add a line break so that the next pokemon is listed on a new line
-}
+    document.write('<br/>'); //once it has gone through one pokemon, add a line break so that the next pokemon is listed on a new line
+});
