@@ -16,7 +16,7 @@ let pokemonRepository = (function () {
             listEntry.innerText = pokemon.name;
             listEntry.classList.add('pokemon-entry');
             listEntry.addEventListener('click', function () {
-                console.log(pokemonRepository.showDetails(pokemon));
+                pokemonRepository.showDetails(pokemon);
             });
             listItem.appendChild(listEntry);
             pokemonListContainer.appendChild(listItem);
