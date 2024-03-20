@@ -99,13 +99,22 @@ let pokemonRepository = (function () {
             let imageElement = document.createElement('img');
             imageElement.src = imgSrc;
 
-            let contentElement = document.createElement('p');
-            contentElement.innerText = 'Height: ' + height + ' Types: ' + type;
+            let detailContainer = document.createElement('ul');
+            let detailHeight = document.createElement('li');
+            detailHeight.innerText = `Height: ${height}m`;
+            let detailType = document.createElement('li');
+            if(type.length > 1) {
+                detailType.innerHTML = `Types: <span class='typing' style="background-color: var(--${type[0]}-color)">${type[0]}</span> <span class='typing' style="background-color: var(--${type[1]}-color)">${type[1]}</span>`;
+            } else {
+                detailType.innerHTML = `Type: <span class='typing' style="background-color: var(--${type}-color)">${type}</span>`;
+            }
+            detailContainer.appendChild(detailType);
+            detailContainer.appendChild(detailHeight);
 
             modal.appendChild(closeButtonElement);
             modal.appendChild(titleElement);
             modal.appendChild(modalContent);
-            modalContent.appendChild(contentElement);
+            modalContent.appendChild(detailContainer);
             modalContent.appendChild(imageElement);
             modalContainer.appendChild(modal);
             
