@@ -12,7 +12,6 @@ let pokemonRepository = (function () {
         addListItem: function (pokemon) {
             let pokemonListContainer = document.querySelector('.pokemon-list');
             let listItem = document.createElement('li');
-            // let listEntry = document.createElement('button');
             pokemonRepository.loadListDetails(pokemon).then(function () {
                 let listNumber = document.createElement('span');
                 listNumber.innerText = `No.${pokemon.id.toString().padStart(3, '0')}`;
@@ -27,12 +26,10 @@ let pokemonRepository = (function () {
                 listItem.appendChild(listIcon);
                 listItem.appendChild(listName);
             });
-            // listEntry.classList.add('pokemon-entry');
             listItem.addEventListener('click', function () {
                 pokemonRepository.showDetails(pokemon);
             });
             listItem.classList.add('list-item');
-            // listItem.appendChild(listEntry);
             pokemonListContainer.appendChild(listItem);
         },
         loadList: function () {
