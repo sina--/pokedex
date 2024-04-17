@@ -15,8 +15,21 @@ let pokemonRepository = (function () {
       listItem.classList.add("list-group-item", "list-group-item-action");
       listItem.setAttribute("data-toggle", "modal");
       listItem.setAttribute("data-target", "#pokemonModal");
-      listItem.innerText = pokemon.name;
-      pokemonListContainer.appendChild(listItem);
+      pokemonRepository.loadListDetails(pokemon).then(function() {
+        let listNumber = document.createElement("span");
+        listNumber.innerText = `No.${pokemon.id.toString().padStart(3, "0")}`;
+        listNumber.classList.add("list-number");
+        let listIcon = document.createElement("img");
+        listIcon.src = `${pokemon.iconUrl}`;
+        listIcon.classList.add("list-icon");
+        let listName = document.createElement("div");
+        listName.innerText = `${pokemon.name}`;
+        listName.classList.add("list-name");
+        listItem.appendChild(listNumber);
+        listItem.appendChild(listIcon);
+        listItem.appendChild(listName);
+        pokemonListContainer.appendChild(listItem);
+      });
       listItem.addEventListener("click", function () {
         pokemonRepository.showDetails(pokemon);
       });
@@ -83,7 +96,14 @@ let pokemonRepository = (function () {
         modalHeight.innerText = `Height: ${pokemon.height}m`;
 
         let modalType = document.getElementById("pokemonType");
-        modalType.innerText = `Type: ${pokemon.types.join(", ")}`;
+        if (pokemon.types.length > 1) {
+          let typeSpans = pokemon.types.map(function(type) {
+            return `<span class='typing' style="background-color: var(--${type}-color)">${type}</span>`;
+          });
+          modalType.innerHTML = `Types: ${typeSpans.join(", ")}`;
+        } else {
+          modalType.innerHTML = `Type: <span class='typing' style="background-color: var(--${pokemon.types[0]}-color)">${pokemon.types[0]}</span>`;
+        }
       });
     },
   };
